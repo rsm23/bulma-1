@@ -63,8 +63,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control">
-                                        <input class="input" id="password" type="password" name="password"
-                                               aria-describedby="passwordHelpText" required>
+                                        <input class="input" id="password" type="password" name="password" required>
                                     </p>
 
                                     @if ($errors->has('password'))
@@ -85,8 +84,7 @@
                             <div class="field-body">
                                 <div class="field">
                                     <p class="control">
-                                        <input class="input" id="password-confirm" type="password"
-                                               name="password_confirmation" required>
+                                        <input class="input" id="password-confirm" type="password" name="password_confirmation" required>
                                     </p>
                                 </div>
                             </div>
@@ -99,8 +97,7 @@
                             <div class="field-body">
                                 <div class="field is-grouped">
                                     <div class="control">
-                                        <button type="submit" class="button is-primary">Send Password Reset Link
-                                        </button>
+                                        <button type="submit" class="button is-primary">Reset Password </button>
                                     </div>
                                 </div>
                             </div>
