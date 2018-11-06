@@ -40,9 +40,9 @@ class BulmaPreset extends Preset
     protected static function updatePackageArray(array $packages)
     {
         return [
-            'bulma' => '^0.6.1',
-            'bulma-extensions' => '^0.4.2',
-        ] + Arr::except($packages, ['bootstrap-sass', 'foundation-sites']);
+            'bulma' => '^0.7.2',
+            'bulma-extensions' => '^3.0.0',
+        ] + Arr::except($packages, ['bootstrap']);
     }
 
     /**
@@ -53,17 +53,17 @@ class BulmaPreset extends Preset
     protected static function updateSass()
     {
         // clean up orphan files
-        $orphan_sass_files = glob(resource_path('/assets/sass/*.*'));
+        $orphan_sass_files = glob(resource_path('/sass/*.*'));
 
         foreach($orphan_sass_files as $sass_file)
         {
             (new Filesystem)->delete($sass_file);
         }
 
-        copy(__DIR__.'/bulma-stubs/initial-variables.sass', resource_path('assets/sass/initial-variables.sass'));
-        copy(__DIR__.'/bulma-stubs/bulma.sass', resource_path('assets/sass/bulma.sass'));
-        copy(__DIR__.'/bulma-stubs/bulma-extensions.sass', resource_path('assets/sass/bulma-extensions.sass'));
-        copy(__DIR__.'/bulma-stubs/app.scss', resource_path('assets/sass/app.scss'));
+        copy(__DIR__.'/bulma-stubs/initial-variables.sass', resource_path('sass/initial-variables.sass'));
+        copy(__DIR__.'/bulma-stubs/bulma.sass', resource_path('sass/bulma.sass'));
+        copy(__DIR__.'/bulma-stubs/bulma-extensions.sass', resource_path('sass/bulma-extensions.sass'));
+        copy(__DIR__.'/bulma-stubs/app.scss', resource_path('sass/app.scss'));
     }
 
 
@@ -74,11 +74,14 @@ class BulmaPreset extends Preset
      */
     protected static function updateBootstrapping()
     {
-        (new Filesystem)->delete(
-            resource_path('assets/js/bootstrap.js')
-        );
+        $file = new Filesystem;
 
-        copy(__DIR__.'/bulma-stubs/bootstrap.js', resource_path('assets/js/bootstrap.js'));
+        $file->delete(resource_path('js/bootstrap.js'));
+        $file->delete(resource_path('js/app.js'));
+
+        copy(__DIR__.'/bulma-stubs/bootstrap.js', resource_path('js/bootstrap.js'));
+        copy(__DIR__.'/bulma-stubs/app.js', resource_path('js/app.js'));
+        copy(__DIR__.'/bulma-stubs/bulma-extensions.js', resource_path('js/bulma-extensions.js'));
     }
 
 
